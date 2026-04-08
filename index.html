@@ -1,315 +1,938 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>This Was Never a Game</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This Was Never a Game</title>
+  <meta name="description" content="An experience that cannot be played — only preserved." />
+  <meta name="robots" content="noindex, nofollow" />
 
-<meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0b0b0b;
+      --card: rgba(255,255,255,0.05);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f5f5f5;
+      --muted: rgba(255,255,255,0.74);
+      --dim: rgba(255,255,255,0.48);
+      --accent: #d11818;
+      --accent-hover: #f12d2d;
+      --warning: #ffcc66;
+      --max-width: 1120px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --radius: 22px;
+    }
 
-<style>
-body {
-    margin: 0;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    line-height: 1.8;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 40px 20px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 42px;
-    text-align: center;
-}
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(209,24,24,0.12), transparent 32%),
+        linear-gradient(180deg, #080808 0%, #040404 100%);
+      color: var(--text);
+      font-family: "Inter", Arial, sans-serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
 
-.subtitle {
-    text-align: center;
-    opacity: 0.7;
-    margin-bottom: 40px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.015), rgba(255,255,255,0.015)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.018) 0,
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      opacity: 0.18;
+      z-index: 0;
+    }
 
-.section {
-    margin-bottom: 60px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.video {
-    text-align: center;
-}
+    .page {
+      position: relative;
+      z-index: 1;
+    }
 
-button {
-    background: #ff0033;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    display: block;
-    margin: 40px auto;
-}
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-.review {
-    border-left: 3px solid #ff0033;
-    padding-left: 15px;
-    margin: 20px 0;
-    opacity: 0.8;
-}
-</style>
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 72px 0 48px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 18px;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.1rem);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(209,24,24,0.18);
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 36px;
+      font-size: 1.02rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.22s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(209,24,24,0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: rgba(255,255,255,0.18);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.36);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-note {
+      color: var(--dim);
+      font-size: 0.95rem;
+      max-width: 560px;
+    }
+
+    .hero-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -35% auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(209,24,24,0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+
+    .card-quote {
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+
+    .card-small {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    section {
+      padding: 36px 0 0;
+    }
+
+    .section-block {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.35rem, 3vw, 1.95rem);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      max-width: 780px;
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      border: 1px solid rgba(255,204,102,0.28);
+      background: rgba(255,204,102,0.08);
+    }
+
+    .warning-box strong {
+      color: #fff0c5;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .story-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .story-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .story-box h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 14px;
+    }
+
+    .story-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #000;
+      box-shadow: var(--shadow);
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 14px;
+      color: var(--dim);
+      font-size: 0.96rem;
+      text-align: center;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .tier {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 18px;
+      padding: 22px 18px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-price {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .tier-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .tier p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .tier-spacer {
+      flex: 1;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 18px;
+      padding: 22px;
+      min-height: 180px;
+    }
+
+    .review-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .review-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .evidence-note {
+      margin-top: 20px;
+      color: var(--dim);
+      font-size: 0.94rem;
+    }
+
+    .closing {
+      text-align: center;
+      padding: 20px 0 80px;
+    }
+
+    .closing h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .closing p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 26px;
+    }
+
+    footer {
+      padding: 0 0 56px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+
+    /* Spoiler Gate */
+    .gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.92), rgba(0,0,0,0.96)),
+        radial-gradient(circle at center, rgba(209,24,24,0.15), transparent 38%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gate.hidden {
+      display: none;
+    }
+
+    .gate-panel {
+      width: min(720px, 100%);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 34px 28px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .gate-kicker {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+
+    .gate h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .gate p {
+      color: var(--muted);
+      margin: 0 auto 14px;
+      max-width: 560px;
+    }
+
+    .gate-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .two-col,
+      .story-columns,
+      .support-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 48px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 20px, var(--max-width));
+      }
+
+      .section-block,
+      .hero-card,
+      .gate-panel {
+        padding: 22px 18px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="container">
-
-<h1>This Was Never a Game</h1>
-<p class="subtitle">An experience that cannot be played — only preserved.</p>
-
-<div class="section video">
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/mqb9ytPbSjk" frameborder="0" allowfullscreen></iframe>
-<p>This is the closest you will ever get.</p>
-</div>
-
-<div class="section">
-<h2>It doesn’t start like this.</h2>
-
-<p>
-You were just going to meet a friend.
-</p>
-
-<p>
-You talk. You sit. Someone knocks.
-</p>
-
-<p>
-A stranger falls into the room.
-</p>
-
-<p>
-You keep talking.
-</p>
-
-<p>
-Nothing feels wrong.
-</p>
-
-<p>
-Until something explodes.
-</p>
-
-<p>
-And suddenly, everything changes.
-</p>
-</div>
-
-<div class="section">
-<h2>And then it makes sense.</h2>
-
-<p>
-The sky turns dark.
-</p>
-
-<p>
-Things begin to fall.
-</p>
-
-<p>
-Someone asks you:
-</p>
-
-<p><strong>“Where is your weapon?”</strong></p>
-
-<p>
-You don’t understand.
-</p>
-
-<p>
-But you start acting like you do.
-</p>
-
-<p>
-You contact a base.
-</p>
-
-<p>
-You follow instructions.
-</p>
-
-<p>
-You solve things to survive.
-</p>
-
-<p>
-You begin to believe:
-</p>
-
-<p><strong>This is a war.</strong></p>
-</div>
-
-<div class="section">
-<h2>But something is wrong.</h2>
-
-<p>
-A child’s voice appears where it shouldn’t.
-</p>
-
-<p>
-A room filled with symbols, blood, and fragments.
-</p>
-
-<p>
-Something feels… personal.
-</p>
-
-<p>
-Not external.
-</p>
-
-<p>
-Not real.
-</p>
-</div>
-
-<div class="section">
-<h2>And then, everything collapses.</h2>
-
-<p>
-Lights flash.
-</p>
-
-<p>
-Voices surround you.
-</p>
-
-<p>
-Like a press conference.
-</p>
-
-<p>
-Like you are being watched.
-</p>
-
-<p>
-And then a voice asks:
-</p>
-
-<p><strong>“Do you think you are a murderer?”</strong></p>
-
-<p>
-And everything goes dark.
-</p>
-</div>
-
-<div class="section">
-<h2>It was never a battlefield.</h2>
-
-<p>
-You were on your way to meet a friend.
-</p>
-
-<p>
-Something fell from the sky.
-</p>
-
-<p>
-And your mind did the rest.
-</p>
-
-<p>
-You didn’t enter a war.
-</p>
-
-<p>
-You returned to one.
-</p>
-
-<p>
-A place where you were once called a hero.
-</p>
-
-<p>
-A place you never truly left.
-</p>
-
-<p><strong>Not all wars end when they’re over.</strong></p>
-</div>
-
-<div class="section">
-<h2>This experience exists in Taiwan.</h2>
-
-<p>
-It cannot be downloaded.
-</p>
-
-<p>
-It cannot be streamed.
-</p>
-
-<p>
-And for most people outside Taiwan,
-it will never be possible to experience it.
-</p>
-</div>
-
-<div class="section">
-<h2>And now, it may disappear.</h2>
-
-<p>
-Not because it failed.
-</p>
-
-<p>
-But because works like this are hard to sustain.
-</p>
-
-<p>
-It has been described as powerful.
-</p>
-
-<p>
-Unforgettable.
-</p>
-
-<p>
-Even meaningful.
-</p>
-
-<p>
-But not enough people are able to reach it.
-</p>
-
-<p>
-So this page is not about selling a game.
-</p>
-
-<p>
-It is about keeping something from being lost.
-</p>
-</div>
-
-<div class="section">
-<h2>What people said</h2>
-
-<div class="review">“One of the most unique experiences I’ve ever had.”</div>
-<div class="review">“I didn’t realize what I went through until the very end.”</div>
-<div class="review">“It stayed with me long after I left.”</div>
-
-<!-- 你之後可以放圖片 -->
-<!-- <img src="review1.jpg" width="100%"> -->
-
-</div>
-
-<button onclick="window.location.href='https://ko-fi.com/thiswasneveragame'">
-Support this project
-</button>
-
-</div>
-
+  <div class="gate" id="spoilerGate">
+    <div class="gate-panel">
+      <div class="gate-kicker">Spoiler Warning</div>
+      <h2>This page contains major spoilers</h2>
+      <p>
+        This page reveals key scenes, environments, and the true narrative structure of the experience.
+      </p>
+      <p>
+        Please do not continue if you may play this work in Taiwan in the future.
+      </p>
+      <div class="gate-actions">
+        <button class="btn btn-primary" onclick="enterSite()">I understand, continue</button>
+        <a class="btn btn-secondary" href="https://ko-fi.com/thiswasneveragame" target="_blank" rel="noopener noreferrer">Go to Ko-fi instead</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Immersive Experience Archive</div>
+          <h1>This Was Never a Game</h1>
+          <p class="subtitle">
+            An experience that cannot be played — only preserved.
+          </p>
+          <div class="hero-copy">
+            This is a physical immersive work in Taiwan.
+            Most people outside Taiwan will never be able to experience it in person.
+            This page exists to preserve what it is, what it does, and why it matters before it disappears.
+          </div>
+          <div class="button-row">
+            <a class="btn btn-primary" href="https://ko-fi.com/thiswasneveragame" target="_blank" rel="noopener noreferrer">
+              Support this project
+            </a>
+            <a class="btn btn-secondary" href="#video">
+              Watch the archive trailer
+            </a>
+          </div>
+          <div class="hero-note">
+            Not a digital game. Not a downloadable product. A fragile physical experience that can only be encountered in one place.
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="card-label">Project statement</div>
+          <div class="card-quote">
+            You were only supposed to meet a friend.
+            <br>
+            Then the sky fell.
+          </div>
+          <div class="card-small">
+            A story about returning to a war you were told had already ended, and being called a hero for surviving something your mind never escaped.
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="container">
+        <div class="section-block warning-box">
+          <h2 class="section-title">Before you continue</h2>
+          <p class="section-lead">
+            <strong>This page is not intended for future players.</strong>
+            It contains major spoilers, including visual details, story progression, and the final reinterpretation of the experience.
+            It was created for international viewers and supporters who may never be able to access the original physical work in Taiwan.
+          </p>
+        </div>
+      </section>
+
+      <section class="container" id="video">
+        <div class="section-block">
+          <h2 class="section-title">Archive trailer</h2>
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+              title="This Was Never a Game trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="caption">
+            This is the closest most people will ever get.
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">How it begins</h2>
+            <p>
+              You listen to a short introduction and are told only one thing:
+              you are about to meet a friend.
+            </p>
+            <p>
+              You enter the space. You meet that friend. You talk casually.
+            </p>
+            <p>
+              Then someone starts ringing the doorbell over and over.
+              The door opens. A drunken stranger falls into the room.
+            </p>
+            <p>
+              The conversation continues.
+              Nothing feels impossible yet.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">The moment it breaks</h2>
+            <p>
+              Your friend suggests going out for a drink.
+            </p>
+            <p>
+              Outside, someone points at the sky:
+              <strong>“Look, a shooting star.”</strong>
+            </p>
+            <p>
+              Then the drunken man screams.
+              Something explodes.
+              He throws himself aside.
+            </p>
+            <p>
+              Objects fall.
+              A tree erupts.
+              The sky goes dark.
+              Screaming fills the space.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="story-columns">
+          <div class="story-box">
+            <h3>And suddenly, it all has rules</h3>
+            <p>
+              When the light returns, the drunken stranger looks at you in panic and asks:
+              <strong>“Where are your weapons?”</strong>
+            </p>
+            <p>
+              You do not understand.
+              But the world around you begins insisting that you should.
+            </p>
+            <p>
+              You are told to contact the base.
+              You report the explosion.
+              Support is supposedly on the way.
+              Until then, you are told to keep moving and solve what must be solved.
+            </p>
+          </div>
+
+          <div class="story-box">
+            <h3>You begin to believe it</h3>
+            <p>
+              So you do.
+            </p>
+            <p>
+              You solve puzzles. You follow instructions. You adapt.
+            </p>
+            <p>
+              And slowly, without noticing the exact moment it happens,
+              you begin to accept the impossible:
+            </p>
+            <p>
+              <strong>this must be a war.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">But the world starts leaking</h2>
+            <p>
+              Along the way, something else intrudes.
+            </p>
+            <p>
+              You hear the voice of a little girl.
+              It does not belong here, but it persists.
+            </p>
+            <p>
+              Later, you enter a red room covered in curses, bloody handprints, and deeply unsettling traces of something bodily and broken.
+            </p>
+            <p>
+              This no longer feels like a battlefield alone.
+              It feels intimate.
+              Like memory has started bleeding through the set.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">The accusation</h2>
+            <p>
+              You leave through a hidden passage.
+              The little girl calls to you again.
+            </p>
+            <p>
+              You see her at the end of a corridor.
+              You move closer.
+            </p>
+            <p>
+              Something falls.
+              Her head is crushed.
+            </p>
+            <p>
+              A nearby door opens.
+              You step inside and are hit by flashing lights, blinding brightness, and the overwhelming soundscape of a press conference.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="section-block">
+          <h2 class="section-title">And then the question comes</h2>
+          <p class="section-lead">
+            You solve everything in front of you.
+            Then the world cuts to black.
+          </p>
+          <p>
+            And a voice asks:
+          </p>
+          <p style="font-size: 1.2rem; font-weight: 700;">
+            “Do you think you are a murderer?”
+          </p>
+          <p>
+            Then the door opens.
+            The friend from the beginning appears again and says:
+          </p>
+          <p style="font-size: 1.2rem; font-weight: 700;">
+            “Wake up. You are not in a battlefield.”
+          </p>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="section-block">
+          <h2 class="section-title">What it really was</h2>
+          <p>
+            At the end, the player watches a final video and understands the truth:
+          </p>
+          <p>
+            This was never about being sent into war.
+          </p>
+          <p>
+            It was about a person who was only meant to meet a friend for food and drinks,
+            saw something fall from the sky,
+            collapsed,
+            and was violently dragged back into a war already living inside the mind.
+          </p>
+          <p>
+            Not just the battlefield —
+            but also the aftermath,
+            the public narrative,
+            and the press conference where that person was once called a hero.
+          </p>
+          <p>
+            The experience is built around the idea that survival does not always look like peace.
+            Sometimes the war ends everywhere except inside the person who lived through it.
+          </p>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">Why this matters</h2>
+            <p>
+              This experience exists physically in Taiwan.
+            </p>
+            <p>
+              It cannot be downloaded.
+              It cannot be streamed.
+              And for most people outside Taiwan, it will never be possible to experience it firsthand.
+            </p>
+            <p>
+              That is why this page exists:
+              to preserve the work for those who cannot reach it.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">Why support it</h2>
+            <p>
+              This project is critically loved, but difficult to sustain.
+            </p>
+            <p>
+              It has moved people.
+              It has stayed with them.
+              It has been remembered.
+            </p>
+            <p>
+              But not enough people are able to physically reach it,
+              and that means a work that resonates deeply may still disappear.
+            </p>
+            <p>
+              Support here is not just a donation.
+              It is a way of keeping a fragile work alive.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="section-block">
+          <h2 class="section-title">Ways to support</h2>
+          <p class="section-lead">
+            If this kind of physical storytelling matters to you, your support helps this work continue to exist.
+          </p>
+
+          <div class="support-grid">
+            <div class="tier">
+              <div class="tier-price">$3</div>
+              <div class="tier-title">Keep it alive</div>
+              <p>
+                A simple gesture of support for the project and the idea behind it.
+              </p>
+              <div class="tier-spacer"></div>
+            </div>
+
+            <div class="tier">
+              <div class="tier-price">$10</div>
+              <div class="tier-title">Behind the scenes</div>
+              <p>
+                Support the archive and help preserve the design thinking, atmosphere, and creative process behind the work.
+              </p>
+              <div class="tier-spacer"></div>
+            </div>
+
+            <div class="tier">
+              <div class="tier-price">$25</div>
+              <div class="tier-title">The hidden truth</div>
+              <p>
+                Support the deeper documentation of the story, structure, and final emotional reveal.
+              </p>
+              <div class="tier-spacer"></div>
+            </div>
+
+            <div class="tier">
+              <div class="tier-price">$50</div>
+              <div class="tier-title">Become part of the memory</div>
+              <p>
+                Help ensure this experience is remembered instead of lost.
+              </p>
+              <div class="tier-spacer"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="section-block">
+          <h2 class="section-title">What people said</h2>
+          <p class="section-lead">
+            This section can be expanded with screenshots, reviews, or quotes from players and media coverage.
+          </p>
+
+          <div class="reviews-grid">
+            <div class="review-card">
+              <strong>Player response</strong>
+              <p>
+                “One of the most unique experiences I’ve ever had.”
+              </p>
+            </div>
+
+            <div class="review-card">
+              <strong>Player response</strong>
+              <p>
+                “I didn’t understand what had happened to me until the very end.”
+              </p>
+            </div>
+
+            <div class="review-card">
+              <strong>Player response</strong>
+              <p>
+                “It stayed with me long after I left.”
+              </p>
+            </div>
+          </div>
+
+          <div class="evidence-note">
+            If you want, you can replace these with real screenshots later, such as review images, media mentions, or rating captures.
+          </div>
+        </div>
+      </section>
+
+      <section class="container closing">
+        <h2>Some works cannot scale</h2>
+        <p>
+          That does not make them less meaningful.
+          It only makes them easier to lose.
+        </p>
+        <a class="btn btn-primary" href="https://ko-fi.com/thiswasneveragame" target="_blank" rel="noopener noreferrer">
+          Support on Ko-fi
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      This page was created as an international archive for a physical immersive experience based in Taiwan.
+    </footer>
+  </div>
+
+  <script>
+    function enterSite() {
+      document.getElementById('spoilerGate').classList.add('hidden');
+      sessionStorage.setItem('spoilerAccepted', 'yes');
+    }
+
+    window.addEventListener('load', function () {
+      if (sessionStorage.getItem('spoilerAccepted') === 'yes') {
+        document.getElementById('spoilerGate').classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>
