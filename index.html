@@ -510,20 +510,70 @@
     }
 
     .tier {
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.11);
       border-radius: 18px;
       padding: 22px 18px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+      will-change: transform;
+    }
+
+    .tier::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(209,24,24,0.22), transparent 35%, transparent 65%, rgba(209,24,24,0.18));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tier::after {
+      content: "";
+      position: absolute;
+      left: -40%;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+      transform: skewX(-18deg);
+      transition: left 0.5s ease;
+      pointer-events: none;
     }
 
     .tier:hover {
-      transform: translateY(-6px);
-      border-color: rgba(209,24,24,0.45);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.28);
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(209,24,24,0.6);
+      box-shadow: 0 20px 40px rgba(209,24,24,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .tier:hover::before {
+      opacity: 1;
+    }
+
+    .tier:hover::after {
+      left: 110%;
+    }
+
+    .tier.glitching {
+      animation: tierGlitch 0.18s steps(2, end) 2;
+    }
+
+    @keyframes tierGlitch {
+      0% { transform: translateY(-8px) translate(0,0) scale(1.02); }
+      20% { transform: translateY(-8px) translate(2px,-1px) scale(1.02); }
+      40% { transform: translateY(-8px) translate(-2px,1px) scale(1.02); }
+      60% { transform: translateY(-8px) translate(1px,1px) scale(1.02); }
+      80% { transform: translateY(-8px) translate(-1px,-1px) scale(1.02); }
+      100% { transform: translateY(-8px) translate(0,0) scale(1.02); }
     }
 
     .tier-price {
@@ -531,17 +581,23 @@
       font-size: 1.7rem;
       margin-bottom: 10px;
       color: #fff;
+      position: relative;
+      z-index: 1;
     }
 
     .tier-title {
       font-weight: 700;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .tier p {
       color: var(--muted);
       margin: 0;
       font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
     }
 
     .tier-spacer {
@@ -1084,41 +1140,43 @@
           </p>
 
           <div class="support-grid">
-            <div class="tier">
+
+            <a href="https://ko-fi.com/s/11e9f173a0" target="_blank" class="tier support-card">
               <div class="tier-price">$3</div>
               <div class="tier-title">Keep it alive</div>
               <p>
                 A simple gesture of support for the project and the idea behind it.
               </p>
               <div class="tier-spacer"></div>
-            </div>
+            </a>
 
-            <div class="tier">
+            <a href="https://ko-fi.com/s/cb443e618d" target="_blank" class="tier support-card">
               <div class="tier-price">$10</div>
               <div class="tier-title">Behind the scenes</div>
               <p>
                 Support the archive and help preserve the design thinking, atmosphere, and creative process behind the work.
               </p>
               <div class="tier-spacer"></div>
-            </div>
+            </a>
 
-            <div class="tier">
+            <a href="https://ko-fi.com/s/9cdb56db1f" target="_blank" class="tier support-card">
               <div class="tier-price">$25</div>
               <div class="tier-title">The hidden truth</div>
               <p>
                 Support the deeper documentation of the story, structure, and final emotional reveal.
               </p>
               <div class="tier-spacer"></div>
-            </div>
+            </a>
 
-            <div class="tier">
+            <a href="https://ko-fi.com/s/c5d4c76407" target="_blank" class="tier support-card">
               <div class="tier-price">$50</div>
               <div class="tier-title">Become part of the memory</div>
               <p>
                 Help ensure this experience is remembered instead of lost.
               </p>
               <div class="tier-spacer"></div>
-            </div>
+            </a>
+
           </div>
         </div>
       </section>
@@ -1217,6 +1275,124 @@
       }, { threshold: 0.12 });
 
       reveals.forEach(el => observer.observe(el));
+    });
+
+    /* --- Hover glitch war-like sound effect --- */
+    let audioCtx = null;
+    let audioUnlocked = false;
+
+    function unlockAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      audioUnlocked = true;
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('touchstart', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+    }
+
+    window.addEventListener('click', unlockAudio, { once: true });
+    window.addEventListener('touchstart', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
+
+    function playGlitchWarSound() {
+      if (!audioUnlocked || !audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      const master = audioCtx.createGain();
+      master.gain.setValueAtTime(0.0001, now);
+      master.gain.exponentialRampToValueAtTime(0.07, now + 0.015);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+      master.connect(audioCtx.destination);
+
+      // Noise burst
+      const bufferSize = audioCtx.sampleRate * 0.25;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+      }
+
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+
+      const bandpass = audioCtx.createBiquadFilter();
+      bandpass.type = 'bandpass';
+      bandpass.frequency.setValueAtTime(900, now);
+      bandpass.Q.setValueAtTime(0.8, now);
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.55, now);
+
+      noise.connect(bandpass);
+      bandpass.connect(noiseGain);
+      noiseGain.connect(master);
+
+      // Low rumble
+      const rumble = audioCtx.createOscillator();
+      rumble.type = 'sawtooth';
+      rumble.frequency.setValueAtTime(55, now);
+
+      const rumbleFilter = audioCtx.createBiquadFilter();
+      rumbleFilter.type = 'lowpass';
+      rumbleFilter.frequency.setValueAtTime(120, now);
+
+      const rumbleGain = audioCtx.createGain();
+      rumbleGain.gain.setValueAtTime(0.001, now);
+      rumbleGain.gain.exponentialRampToValueAtTime(0.03, now + 0.02);
+      rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+      rumble.connect(rumbleFilter);
+      rumbleFilter.connect(rumbleGain);
+      rumbleGain.connect(master);
+
+      // Sharp metallic glitch tone
+      const tone = audioCtx.createOscillator();
+      tone.type = 'square';
+      tone.frequency.setValueAtTime(1800, now);
+      tone.frequency.exponentialRampToValueAtTime(320, now + 0.08);
+
+      const toneGain = audioCtx.createGain();
+      toneGain.gain.setValueAtTime(0.001, now);
+      toneGain.gain.exponentialRampToValueAtTime(0.018, now + 0.01);
+      toneGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+      tone.connect(toneGain);
+      toneGain.connect(master);
+
+      noise.start(now);
+      noise.stop(now + 0.22);
+
+      rumble.start(now);
+      rumble.stop(now + 0.2);
+
+      tone.start(now);
+      tone.stop(now + 0.12);
+    }
+
+    const supportCards = document.querySelectorAll('.support-card');
+    supportCards.forEach(card => {
+      let hoverCooldown = false;
+
+      card.addEventListener('mouseenter', () => {
+        if (hoverCooldown) return;
+        hoverCooldown = true;
+
+        card.classList.add('glitching');
+        playGlitchWarSound();
+
+        setTimeout(() => {
+          card.classList.remove('glitching');
+        }, 220);
+
+        setTimeout(() => {
+          hoverCooldown = false;
+        }, 320);
+      });
     });
   </script>
 </body>
