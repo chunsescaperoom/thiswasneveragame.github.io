@@ -1,9 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-@@ -7,214 +8,1424 @@
-<meta name="description" content="An experience that now needs to be moved — before it disappears." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>This Was Never a Game | Over My Dead Body</title>
+  <meta name="description" content="An experience that cannot be played — only preserved." />
+  <meta name="description" content="An experience that now needs to be moved — before it disappears." />
 <meta name="robots" content="noindex, nofollow" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* ⚠️ 原本CSS完全保留（略，請用你原本那份） */
-  </style>
-</head>
     :root {
       --bg: #050505;
       --bg-soft: #0b0b0b;
@@ -31,18 +30,14 @@
       --radius: 22px;
     }
 
-<body>
     * {
       box-sizing: border-box;
     }
 
-<div class="page">
     html {
       scroll-behavior: smooth;
     }
 
-<header class="hero">
-  <div class="container hero-grid">
     body {
       margin: 0;
       background:
@@ -54,8 +49,6 @@
       overflow-x: hidden;
     }
 
-    <div class="reveal visible">
-      <div class="eyebrow">Immersive Experience Archive</div>
     body::before {
       content: "";
       position: fixed;
@@ -74,9 +67,6 @@
       z-index: 0;
     }
 
-      <h1 class="glitch-title" data-text="This Was Never a Game">
-        This Was Never a Game
-      </h1>
     body::after {
       content: "";
       position: fixed;
@@ -90,47 +80,21 @@
       z-index: 0;
     }
 
-      <p class="subtitle">
-        An experience that now needs to be moved — before it disappears.
-      </p>
     @keyframes pulseGlow {
       from { opacity: 0.45; transform: scale(1); }
       to { opacity: 0.9; transform: scale(1.02); }
     }
 
-      <div class="subname">
-        Taiwan title: 戰慄品 | Over My Dead Body
-      </div>
     a {
       color: inherit;
       text-decoration: none;
     }
 
-      <div class="hero-copy">
-        This is a physical immersive experience in Taiwan called <strong>戰慄品</strong>.
-        
-        It was never designed to scale.
-        It exists inside a very specific physical space.
-        
-        After three years in its current location,
-        that space may no longer be available.
-        
-        If we cannot move it,
-        this experience may disappear.
-      </div>
     .page {
       position: relative;
       z-index: 1;
     }
 
-      <div class="button-row">
-        <a class="btn btn-primary" href="https://ko-fi.com/thiswasneveragame" target="_blank">
-          Support this project
-        </a>
-        <a class="btn btn-secondary" href="#video">
-          Watch the archive trailer
-        </a>
-      </div>
     .container {
       width: min(var(--max-width), calc(100% - 32px));
       margin: 0 auto;
@@ -648,8 +612,6 @@
       margin-top: 20px;
     }
 
-      <div class="hero-note">
-        Not a digital game. Not a downloadable product. A physical experience that now depends on whether it can survive relocation.
     .review-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.11);
@@ -787,6 +749,9 @@
       position: relative;
       z-index: 1;
     }
+  /* ⚠️ 原本CSS完全保留（略，請用你原本那份） */
+  </style>
+</head>
 
     .gate p {
       color: var(--muted);
@@ -795,6 +760,7 @@
       position: relative;
       z-index: 1;
     }
+<body>
 
     .gate-actions {
       display: flex;
@@ -805,6 +771,7 @@
       position: relative;
       z-index: 1;
     }
+<div class="page">
 
     @media (max-width: 980px) {
       .hero-grid,
@@ -815,36 +782,69 @@
       .featured-proof {
         grid-template-columns: 1fr;
       }
+<header class="hero">
+  <div class="container hero-grid">
 
       .hero {
         min-height: auto;
         padding-top: 48px;
       }
+    <div class="reveal visible">
+      <div class="eyebrow">Immersive Experience Archive</div>
 
       .hero-card {
         order: -1;
       }
     }
+      <h1 class="glitch-title" data-text="This Was Never a Game">
+        This Was Never a Game
+      </h1>
 
     @media (max-width: 640px) {
       .container {
         width: min(100% - 20px, var(--max-width));
       }
+      <p class="subtitle">
+        An experience that now needs to be moved — before it disappears.
+      </p>
 
       .section-block,
       .hero-card,
       .gate-panel {
         padding: 22px 18px;
       }
+      <div class="subname">
+        Taiwan title: 戰慄品 | Over My Dead Body
+      </div>
 
       .btn {
         width: 100%;
       }
+      <div class="hero-copy">
+        This is a physical immersive experience in Taiwan called <strong>戰慄品</strong>.
+        
+        It was never designed to scale.
+        It exists inside a very specific physical space.
+        
+        After three years in its current location,
+        that space may no longer be available.
+        
+        If we cannot move it,
+        this experience may disappear.
+      </div>
 
       .button-row,
       .gate-actions {
         flex-direction: column;
       }
+      <div class="button-row">
+        <a class="btn btn-primary" href="https://ko-fi.com/thiswasneveragame" target="_blank">
+          Support this project
+        </a>
+        <a class="btn btn-secondary" href="#video">
+          Watch the archive trailer
+        </a>
+      </div>
 
       .closing-quote {
         font-size: 1.05rem;
@@ -866,18 +866,12 @@
       <div class="gate-actions">
         <button class="btn btn-primary" onclick="enterSite()">I understand, continue</button>
         <a class="btn btn-secondary" href="https://ko-fi.com/thiswasneveragame" target="_blank" rel="noopener noreferrer">Go to Ko-fi instead</a>
+      <div class="hero-note">
+        Not a digital game. Not a downloadable product. A physical experience that now depends on whether it can survive relocation.
 </div>
 </div>
   </div>
 
-    <div class="hero-card reveal visible">
-      <div class="card-label">Project statement</div>
-      <div class="card-quote">
-        You were only supposed to meet a friend.<br>
-        Then everything broke.
-      </div>
-      <div class="card-small">
-        And now, the space that holds this memory may disappear.
   <div class="page">
     <header class="hero">
       <div class="container hero-grid">
@@ -885,7 +879,7 @@
           <div class="eyebrow">Immersive Experience Archive</div>
           <h1 class="glitch-title" data-text="This Was Never a Game">This Was Never a Game</h1>
           <p class="subtitle">
-            An experience that now needs to be moved — before it disappears.
+            An experience that cannot be played — only preserved.
           </p>
           <div class="subname">
             Taiwan title: 戰慄品 &nbsp;|&nbsp; English title: Over My Dead Body
@@ -893,9 +887,7 @@
           <div class="hero-copy">
             This is a physical immersive experience in Taiwan called <strong>戰慄品</strong>, internationally presented as <strong>Over My Dead Body</strong>.
             Most people outside Taiwan will never be able to experience it in person.
-            This page exists to preserve what it is — and now, to help it survive beyond its current space.
-            After years in its current location, this work is facing a forced transition.
-            If it cannot move, this experience may disappear.
+            This page exists to preserve what it is, what it does, and why it matters before it disappears.
           </div>
           <div class="button-row">
             <a class="btn btn-primary" href="https://ko-fi.com/thiswasneveragame" target="_blank" rel="noopener noreferrer">
@@ -906,7 +898,7 @@
             </a>
           </div>
           <div class="hero-note">
-            Not a digital game. Not a downloadable product. A fragile physical experience that now depends on whether it can survive relocation.
+            Not a digital game. Not a downloadable product. A fragile physical experience that can only be encountered in one place.
           </div>
         </div>
 
@@ -921,10 +913,351 @@
             A story about being dragged back into a war by an ordinary moment, and living inside a memory that never stopped calling you back.
           </div>
         </div>
+    <div class="hero-card reveal visible">
+      <div class="card-label">Project statement</div>
+      <div class="card-quote">
+        You were only supposed to meet a friend.<br>
+        Then everything broke.
 </div>
-    </div>
     </header>
 
+    <main>
+      <section class="container reveal">
+        <div class="section-block warning-box">
+          <h2 class="section-title">Before you continue</h2>
+          <p class="section-lead">
+            <strong>This page is not intended for future players.</strong>
+            It contains major spoilers, including visual details, story progression, and the final reinterpretation of the experience.
+            It was created for international viewers and supporters who may never be able to access the original physical work in Taiwan.
+          </p>
+        </div>
+      </section>
+
+      <section class="container reveal" id="video">
+        <div class="section-block">
+          <h2 class="section-title">Archive trailer</h2>
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/mqb9ytPbSjk"
+              title="Over My Dead Body trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="caption">
+            This is the closest most people will ever get.
+          </div>
+
+          <div class="featured-proof">
+            <img src="review1.jpg" alt="Featured player review">
+            <div class="featured-proof-text">
+              <h3>Real player reaction</h3>
+              <p>
+                This is not just a concept page. Real players in Taiwan experienced this work, and their reactions are part of why it deserves to be preserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">How it begins</h2>
+            <p>
+              You listen to a short introduction and are told only one thing:
+              you are about to meet a friend.
+            </p>
+            <p>
+              You enter the space. You meet that friend. You chat casually.
+            </p>
+            <p>
+              Then someone starts ringing the doorbell over and over.
+              The door opens.
+              Another friend bursts in — late, drunk, and already disrupting the mood.
+            </p>
+            <p>
+              The conversation continues.
+              Nothing feels impossible yet.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">The moment it breaks</h2>
+            <p>
+              Your friend suggests going out for a drink.
+            </p>
+            <p>
+              Outside, someone points at the sky:
+              <strong>“Look, a shooting star.”</strong>
+            </p>
+            <p>
+              Then the drunk friend suddenly screams.
+              Something explodes.
+              He throws himself aside.
+            </p>
+            <p>
+              Objects fall.
+              A tree erupts.
+              The sky goes dark.
+              Crying fills the space.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="story-columns">
+          <div class="story-box">
+            <h3>And suddenly, it all has rules</h3>
+            <p>
+              When the light returns, that same friend looks at you in panic and asks:
+              <strong>“Where are your weapons?”</strong>
+            </p>
+            <p>
+              You do not understand.
+              But the world around you begins insisting that you should.
+            </p>
+            <p>
+              You are told to contact the base.
+              You report the explosion.
+              Support is supposedly on the way.
+              Until then, you are told to keep moving and solve what must be solved.
+            </p>
+          </div>
+
+          <div class="story-box">
+            <h3>You begin to believe it</h3>
+            <p>
+              So you do.
+            </p>
+            <p>
+              You solve puzzles. You follow instructions. You adapt.
+            </p>
+            <p>
+              And slowly, without noticing the exact moment it happens,
+              you begin to accept the impossible:
+            </p>
+            <p>
+              <strong>this must be a war.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">But the world starts leaking</h2>
+            <p>
+              Along the way, something else intrudes.
+            </p>
+            <p>
+              You hear the voice of a little girl.
+              It does not belong here, but it persists.
+            </p>
+            <p>
+              Later, you enter a red room covered in curses, bloody handprints, and deeply unsettling traces of something bodily and broken.
+            </p>
+            <p>
+              This no longer feels like a battlefield alone.
+              It feels intimate.
+              Like memory has started bleeding through the world around you.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">The accusation</h2>
+            <p>
+              You leave through a hidden passage.
+              The little girl calls to you again.
+            </p>
+            <p>
+              You see her at the end of a corridor.
+              You move closer.
+            </p>
+            <p>
+              Something falls.
+              Her head is crushed.
+            </p>
+            <p>
+              A nearby door opens.
+              You step inside and are hit by flashing lights, blinding brightness, and the overwhelming soundscape of a press conference.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="section-block">
+          <h2 class="section-title">And then the question comes</h2>
+          <p class="section-lead">
+            You solve everything in front of you.
+            Then the world cuts to black.
+          </p>
+          <p>
+            And a voice asks:
+          </p>
+          <p style="font-size: 1.2rem; font-weight: 700;">
+            “Do you think you are a murderer?”
+          </p>
+          <p>
+            Then the door opens.
+            The friend from the beginning appears again and says:
+          </p>
+          <p style="font-size: 1.2rem; font-weight: 700;">
+            “Wake up. You are not in a battlefield.”
+          </p>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="section-block">
+          <h2 class="section-title">What it really was</h2>
+          <p>
+            At the end, the player watches a final video and understands the truth:
+          </p>
+          <p>
+            This was never about being sent into war.
+          </p>
+          <p>
+            It was about a person who was only meant to meet friends for an ordinary night out,
+            saw something fall from the sky,
+            collapsed,
+            and was violently dragged back into a war already living inside the mind.
+          </p>
+          <p>
+            Not just the battlefield —
+            but also the aftermath,
+            and the press conference where that person was once called a hero.
+          </p>
+          <p>
+            The experience is built around the idea that survival does not always look like peace.
+            Sometimes the war ends everywhere except inside the person who lived through it.
+          </p>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="two-col">
+          <div class="section-block">
+            <h2 class="section-title">Why this matters</h2>
+            <p>
+              This experience exists physically in Taiwan.
+            </p>
+            <p>
+              It cannot be downloaded.
+              It cannot be streamed.
+              And for most people outside Taiwan, it will never be possible to experience it firsthand.
+            </p>
+            <p>
+              That is why this page exists:
+              to preserve the work for those who cannot reach it.
+            </p>
+          </div>
+
+          <div class="section-block">
+            <h2 class="section-title">Why support it</h2>
+            <p>
+              This project is critically loved, but difficult to sustain.
+            </p>
+            <p>
+              It has moved people.
+              It has stayed with them.
+              It has been remembered.
+            </p>
+            <p>
+              But not enough people are able to physically reach it,
+              and that means a work that resonates deeply may still disappear.
+            </p>
+            <p>
+              Support here is not just a donation.
+              It is a way of keeping a fragile work alive.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="section-block">
+          <h2 class="section-title">Ways to support</h2>
+          <p class="section-lead">
+            If this kind of physical storytelling matters to you, your support helps this work continue to exist.
+          </p>
+
+          <div class="support-grid">
+
+            <a href="https://ko-fi.com/s/11e9f173a0" target="_blank" class="tier support-card">
+              <div class="tier-price">$3</div>
+              <div class="tier-title">Keep it alive</div>
+              <p>
+                A simple gesture of support for the project and the idea behind it.
+              </p>
+              <div class="tier-spacer"></div>
+            </a>
+
+            <a href="https://ko-fi.com/s/cb443e618d" target="_blank" class="tier support-card">
+              <div class="tier-price">$10</div>
+              <div class="tier-title">Behind the scenes</div>
+              <p>
+                Support the archive and help preserve the design thinking, atmosphere, and creative process behind the work.
+              </p>
+              <div class="tier-spacer"></div>
+            </a>
+
+            <a href="https://ko-fi.com/s/9cdb56db1f" target="_blank" class="tier support-card">
+              <div class="tier-price">$25</div>
+              <div class="tier-title">The hidden truth</div>
+              <p>
+                Support the deeper documentation of the story, structure, and final emotional reveal.
+              </p>
+              <div class="tier-spacer"></div>
+            </a>
+
+            <a href="https://ko-fi.com/s/c5d4c76407" target="_blank" class="tier support-card">
+              <div class="tier-price">$50</div>
+              <div class="tier-title">Become part of the memory</div>
+              <p>
+                Help ensure this experience is remembered instead of lost.
+              </p>
+              <div class="tier-spacer"></div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal">
+        <div class="section-block">
+          <h2 class="section-title">Real player reactions</h2>
+          <p class="section-lead">
+            These are not promotional quotes. These are real player experiences from Taiwan.
+          </p>
+
+          <div class="reviews-grid">
+            <div class="review-card">
+              <img src="review1.jpg" alt="Review 1">
+              <p>“From a completely different perspective, it made us understand what war really means.”</p>
+            </div>
+
+            <div class="review-card">
+              <img src="review2.jpg" alt="Review 2">
+              <p>“The final reveal changed everything. It stayed with me long after.”</p>
+            </div>
+
+            <div class="review-card">
+              <img src="review3.jpg" alt="Review 3">
+              <p>“I truly felt like I was inside a battlefield.”</p>
+            </div>
+      <div class="card-small">
+        And now, the space that holds this memory may disappear.
+      </div>
+    </div>
+
+            <div class="review-card">
+              <img src="review4.jpg" alt="Review 4">
+              <p>“The story is powerful, meaningful, and deeply thought-provoking.”</p>
+            </div>
   </div>
 </header>
 
@@ -960,460 +1293,35 @@
     </p>
   </div>
 </section>
-    <main>
-      <section class="container reveal">
-        <div class="section-block warning-box">
-          <h2 class="section-title">Before you continue</h2>
-          <p class="section-lead">
-            <strong>This page is not intended for future players.</strong>
-            It contains major spoilers, including visual details, story progression, and the final reinterpretation of the experience.
-            It was created for international viewers and supporters who may never be able to access the original physical work in Taiwan.
-          </p>
-        </div>
-      </section>
 
-<section class="container reveal" id="video">
-  <div class="section-block">
-      <section class="container reveal">
-        <div class="section-block">
-          <h2 class="section-title">Why now</h2>
-          <p>
-            This experience was never designed to exist anywhere else.
-          </p>
-          <p>
-            It was built specifically for a physical space — with timing, structure, and environmental details that cannot simply be copied.
-          </p>
-          <p>
-            After years in its current location, that space may no longer be available.
-          </p>
-          <p>
-            Moving it is not simple. It requires dismantling, transporting, rebuilding, and preserving something fragile through the process.
-          </p>
-          <p style="font-weight:700;">
-            This is no longer just about preservation.
-            <br>
-            It is about whether this experience can continue to exist at all.
-          </p>
-        </div>
-      </section>
-
-    <h2 class="section-title">Archive trailer</h2>
-      <section class="container reveal" id="video">
-        <div class="section-block">
-          <h2 class="section-title">Archive trailer</h2>
-          <div class="video-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/mqb9ytPbSjk"
-              title="Over My Dead Body trailer"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="caption">
-            This is the closest most people will ever get.
-          </div>
-
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/mqb9ytPbSjk" allowfullscreen></iframe>
-    </div>
-          <div class="featured-proof">
-            <img src="review1.jpg" alt="Featured player review">
-            <div class="featured-proof-text">
-              <h3>Real player reaction</h3>
-              <p>
-                This is not just a concept page. Real players in Taiwan experienced this work, and their reactions are part of why it deserves to be preserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <div class="caption">
-      This may be the only way to experience it — if it disappears.
-    </div>
-      <section class="container reveal">
-        <div class="two-col">
-          <div class="section-block">
-            <h2 class="section-title">How it begins</h2>
-            <p>
-              You listen to a short introduction and are told only one thing:
-              you are about to meet a friend.
-            </p>
-            <p>
-              You enter the space. You meet that friend. You chat casually.
-            </p>
-            <p>
-              Then someone starts ringing the doorbell over and over.
-              The door opens.
-              Another friend bursts in — late, drunk, and already disrupting the mood.
-            </p>
-            <p>
-              The conversation continues.
-              Nothing feels impossible yet.
-            </p>
-          </div>
-
-  </div>
-</section>
-          <div class="section-block">
-            <h2 class="section-title">The moment it breaks</h2>
-            <p>
-              Your friend suggests going out for a drink.
-            </p>
-            <p>
-              Outside, someone points at the sky:
-              <strong>“Look, a shooting star.”</strong>
-            </p>
-            <p>
-              Then the drunk friend suddenly screams.
-              Something explodes.
-              He throws himself aside.
-            </p>
-            <p>
-              Objects fall.
-              A tree erupts.
-              The sky goes dark.
-              Crying fills the space.
-            </p>
-          </div>
-        </div>
-      </section>
-
-<section class="container reveal">
-  <div class="section-block">
-      <section class="container reveal">
-        <div class="story-columns">
-          <div class="story-box">
-            <h3>And suddenly, it all has rules</h3>
-            <p>
-              When the light returns, that same friend looks at you in panic and asks:
-              <strong>“Where are your weapons?”</strong>
-            </p>
-            <p>
-              You do not understand.
-              But the world around you begins insisting that you should.
-            </p>
-            <p>
-              You are told to contact the base.
-              You report the explosion.
-              Support is supposedly on the way.
-              Until then, you are told to keep moving and solve what must be solved.
-            </p>
-          </div>
-
-    <h2 class="section-title">Why support it</h2>
-          <div class="story-box">
-            <h3>You begin to believe it</h3>
-            <p>
-              So you do.
-            </p>
-            <p>
-              You solve puzzles. You follow instructions. You adapt.
-            </p>
-            <p>
-              And slowly, without noticing the exact moment it happens,
-              you begin to accept the impossible:
-            </p>
-            <p>
-              <strong>this must be a war.</strong>
-            </p>
-          </div>
-        </div>
-      </section>
-
-    <p>
-      This project is not unfinished.
-      It already exists.
-    </p>
-      <section class="container reveal">
-        <div class="two-col">
-          <div class="section-block">
-            <h2 class="section-title">But the world starts leaking</h2>
-            <p>
-              Along the way, something else intrudes.
-            </p>
-            <p>
-              You hear the voice of a little girl.
-              It does not belong here, but it persists.
-            </p>
-            <p>
-              Later, you enter a red room covered in curses, bloody handprints, and deeply unsettling traces of something bodily and broken.
-            </p>
-            <p>
-              This no longer feels like a battlefield alone.
-              It feels intimate.
-              Like memory has started bleeding through the world around you.
-            </p>
-          </div>
-
-    <p>
-      The problem is simpler — and more urgent.
-    </p>
-          <div class="section-block">
-            <h2 class="section-title">The accusation</h2>
-            <p>
-              You leave through a hidden passage.
-              The little girl calls to you again.
-            </p>
-            <p>
-              You see her at the end of a corridor.
-              You move closer.
-            </p>
-            <p>
-              Something falls.
-              Her head is crushed.
-            </p>
-            <p>
-              A nearby door opens.
-              You step inside and are hit by flashing lights, blinding brightness, and the overwhelming soundscape of a press conference.
-            </p>
-          </div>
-        </div>
-      </section>
-
-    <p style="font-weight:700;">
-      It needs to survive a move.
-    </p>
-      <section class="container reveal">
-        <div class="section-block">
-          <h2 class="section-title">And then the question comes</h2>
-          <p class="section-lead">
-            You solve everything in front of you.
-            Then the world cuts to black.
-          </p>
-          <p>
-            And a voice asks:
-          </p>
-          <p style="font-size: 1.2rem; font-weight: 700;">
-            “Do you think you are a murderer?”
-          </p>
-          <p>
-            Then the door opens.
-            The friend from the beginning appears again and says:
-          </p>
-          <p style="font-size: 1.2rem; font-weight: 700;">
-            “Wake up. You are not in a battlefield.”
-          </p>
-        </div>
-      </section>
-
-    <p>
-      Your support helps cover dismantling, relocation,
-      rebuilding, storage, and keeping the work alive.
-    </p>
-      <section class="container reveal">
-        <div class="section-block">
-          <h2 class="section-title">What it really was</h2>
-          <p>
-            At the end, the player watches a final video and understands the truth:
-          </p>
-          <p>
-            This was never about being sent into war.
-          </p>
-          <p>
-            It was about a person who was only meant to meet friends for an ordinary night out,
-            saw something fall from the sky,
-            collapsed,
-            and was violently dragged back into a war already living inside the mind.
-          </p>
-          <p>
-            Not just the battlefield —
-            but also the aftermath,
-            and the press conference where that person was once called a hero.
-          </p>
-          <p>
-            The experience is built around the idea that survival does not always look like peace.
-            Sometimes the war ends everywhere except inside the person who lived through it.
-          </p>
-        </div>
-      </section>
-
-    <p>
-      Support here is not just a donation.
-      It is a way of ensuring this experience does not disappear.
-    </p>
-      <section class="container reveal">
-        <div class="two-col">
-          <div class="section-block">
-            <h2 class="section-title">Why this matters</h2>
-            <p>
-              This experience exists physically in Taiwan.
-            </p>
-            <p>
-              And now, that physical space may not last.
-            </p>
-            <p>
-              It cannot be downloaded.
-              It cannot be streamed.
-              And for most people outside Taiwan, it will never be possible to experience it firsthand.
-            </p>
-            <p>
-              That is why this page exists:
-              to preserve the work for those who cannot reach it.
-            </p>
-          </div>
-
-  </div>
-</section>
-          <div class="section-block">
-            <h2 class="section-title">Why support it</h2>
-            <p>
-              This project is not asking for support because it is unfinished.
-            </p>
-            <p>
-              It already exists.
-            </p>
-            <p>
-              The problem is simpler — and more urgent.
-            </p>
-            <p>
-              It needs to survive a move.
-            </p>
-            <p>
-              Your support helps cover dismantling, relocation, rebuilding, storage, testing, and keeping the work alive until it can reopen.
-            </p>
-            <p>
-              Support here is not just a donation.
-              It is a way of ensuring this experience does not disappear.
-            </p>
-          </div>
-        </div>
-      </section>
-
-<section class="container reveal">
-  <div class="section-block">
-      <section class="container reveal">
-        <div class="section-block">
-          <h2 class="section-title">Ways to support</h2>
-          <p class="section-lead">
-            If this kind of physical storytelling matters to you, your support helps this work survive relocation and continue to exist.
-          </p>
-
-    <h2 class="section-title">Ways to support</h2>
-          <div class="support-grid">
-
-    <div class="support-grid">
-            <a href="https://ko-fi.com/s/11e9f173a0" target="_blank" class="tier support-card">
-              <div class="tier-price">$3</div>
-              <div class="tier-title">Help it move</div>
-              <p>
-                A simple gesture to help this physical experience survive its move.
-              </p>
-              <div class="tier-spacer"></div>
-            </a>
-
-      <a href="https://ko-fi.com/s/11e9f173a0" target="_blank" class="tier">
-        <div class="tier-price">$3</div>
-        <div class="tier-title">Help us move</div>
-        <p>Support the relocation effort.</p>
-      </a>
-            <a href="https://ko-fi.com/s/cb443e618d" target="_blank" class="tier support-card">
-              <div class="tier-price">$10</div>
-              <div class="tier-title">Keep it alive</div>
-              <p>
-                Support the archive while helping preserve the design thinking, atmosphere, and creative process behind the work.
-              </p>
-              <div class="tier-spacer"></div>
-            </a>
-
-      <a href="https://ko-fi.com/s/cb443e618d" target="_blank" class="tier">
-        <div class="tier-price">$10</div>
-        <div class="tier-title">Keep the memory alive</div>
-        <p>Help ensure it survives.</p>
-      </a>
-            <a href="https://ko-fi.com/s/9cdb56db1f" target="_blank" class="tier support-card">
-              <div class="tier-price">$25</div>
-              <div class="tier-title">Help rebuild the experience</div>
-              <p>
-                Support the deeper documentation and the process of rebuilding the experience after relocation.
-              </p>
-              <div class="tier-spacer"></div>
-            </a>
-
-      <a href="https://ko-fi.com/s/9cdb56db1f" target="_blank" class="tier">
-        <div class="tier-price">$25</div>
-        <div class="tier-title">Help rebuild the experience</div>
-        <p>Support reconstruction.</p>
-      </a>
-            <a href="https://ko-fi.com/s/c5d4c76407" target="_blank" class="tier support-card">
-              <div class="tier-price">$50</div>
-              <div class="tier-title">Become part of its survival</div>
-              <p>
-                Help ensure this experience survives instead of becoming something that only exists in memory.
-              </p>
-              <div class="tier-spacer"></div>
-            </a>
-
-      <a href="https://ko-fi.com/s/c5d4c76407" target="_blank" class="tier">
-        <div class="tier-price">$50</div>
-        <div class="tier-title">Become part of the relocation</div>
-        <p>Be part of its survival.</p>
-      </a>
-          </div>
-        </div>
-      </section>
-
-    </div>
-      <section class="container reveal">
-        <div class="section-block">
-          <h2 class="section-title">Real player reactions</h2>
-          <p class="section-lead">
-            These are not promotional quotes. These are real player experiences from Taiwan.
-          </p>
-
-  </div>
-</section>
-          <div class="reviews-grid">
-            <div class="review-card">
-              <img src="review1.jpg" alt="Review 1">
-              <p>“From a completely different perspective, it made us understand what war really means.”</p>
-            </div>
-
-            <div class="review-card">
-              <img src="review2.jpg" alt="Review 2">
-              <p>“The final reveal changed everything. It stayed with me long after.”</p>
-            </div>
-
-            <div class="review-card">
-              <img src="review3.jpg" alt="Review 3">
-              <p>“I truly felt like I was inside a battlefield.”</p>
-            </div>
-
-<section class="container closing reveal">
-            <div class="review-card">
-              <img src="review4.jpg" alt="Review 4">
-              <p>“The story is powerful, meaningful, and deeply thought-provoking.”</p>
-            </div>
-
-  <h2>Some works cannot move easily</h2>
             <div class="review-card">
               <img src="review5.jpg" alt="Review 5">
               <p>“Not just puzzles — it’s an experience with purpose.”</p>
             </div>
+<section class="container reveal" id="video">
+  <div class="section-block">
 
-  <p>
-    That does not make them less meaningful.
-    It only makes them easier to lose — if they cannot move in time.
-  </p>
             <div class="review-card">
               <img src="review6.jpg" alt="Review 6">
               <p>“By the end, everything suddenly made sense.”</p>
             </div>
           </div>
+    <h2 class="section-title">Archive trailer</h2>
 
-  <div class="closing-quote">
-    “After the war, the only trophy left is that every ordinary moment can drag me back into it.”
           <div class="evidence-note">
             If you want to add more later, keep this section selective. A few strong reactions are more powerful than too many screenshots.
           </div>
         </div>
       </section>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/mqb9ytPbSjk" allowfullscreen></iframe>
+    </div>
 
       <section class="container closing reveal">
-        <h2>Some works cannot move easily</h2>
+        <h2>Some works cannot scale</h2>
         <p>
           That does not make them less meaningful.
-          It only makes them easier to lose — if they cannot move in time.
+          It only makes them easier to lose.
         </p>
         <p style="margin-top: 26px; color: var(--muted);">
           After the video ends, one line remains:
@@ -1431,13 +1339,16 @@
         </div>
       </section>
     </main>
+    <div class="caption">
+      This may be the only way to experience it — if it disappears.
+    </div>
 
     <footer>
-      This page was created as an international archive — and now a relocation appeal — for the Taiwan immersive experience 戰慄品 / Over My Dead Body.
+      This page was created as an international archive for the Taiwan immersive experience 戰慄品 / Over My Dead Body.
     </footer>
 </div>
-
 </section>
+
   <script>
     function enterSite() {
       document.getElementById('spoilerGate').classList.add('hidden');
@@ -1464,6 +1375,8 @@
     /* --- Hover glitch war-like sound effect --- */
     let audioCtx = null;
     let audioUnlocked = false;
+<section class="container reveal">
+  <div class="section-block">
 
     function unlockAudio() {
       if (!audioCtx) {
@@ -1477,21 +1390,36 @@
       window.removeEventListener('touchstart', unlockAudio);
       window.removeEventListener('keydown', unlockAudio);
     }
+    <h2 class="section-title">Why support it</h2>
 
     window.addEventListener('click', unlockAudio, { once: true });
     window.addEventListener('touchstart', unlockAudio, { once: true });
     window.addEventListener('keydown', unlockAudio, { once: true });
+    <p>
+      This project is not unfinished.
+      It already exists.
+    </p>
 
     function playGlitchWarSound() {
       if (!audioUnlocked || !audioCtx) return;
+    <p>
+      The problem is simpler — and more urgent.
+    </p>
 
       const now = audioCtx.currentTime;
+    <p style="font-weight:700;">
+      It needs to survive a move.
+    </p>
 
       const master = audioCtx.createGain();
       master.gain.setValueAtTime(0.0001, now);
       master.gain.exponentialRampToValueAtTime(0.07, now + 0.015);
       master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
       master.connect(audioCtx.destination);
+    <p>
+      Your support helps cover dismantling, relocation,
+      rebuilding, storage, and keeping the work alive.
+    </p>
 
       // Noise burst
       const bufferSize = audioCtx.sampleRate * 0.25;
@@ -1500,83 +1428,126 @@
       for (let i = 0; i < bufferSize; i++) {
         data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
       }
+    <p>
+      Support here is not just a donation.
+      It is a way of ensuring this experience does not disappear.
+    </p>
 
       const noise = audioCtx.createBufferSource();
       noise.buffer = buffer;
+  </div>
+</section>
 
       const bandpass = audioCtx.createBiquadFilter();
       bandpass.type = 'bandpass';
       bandpass.frequency.setValueAtTime(900, now);
       bandpass.Q.setValueAtTime(0.8, now);
+<section class="container reveal">
+  <div class="section-block">
 
       const noiseGain = audioCtx.createGain();
       noiseGain.gain.setValueAtTime(0.55, now);
+    <h2 class="section-title">Ways to support</h2>
 
       noise.connect(bandpass);
       bandpass.connect(noiseGain);
       noiseGain.connect(master);
+    <div class="support-grid">
 
       // Low rumble
       const rumble = audioCtx.createOscillator();
       rumble.type = 'sawtooth';
       rumble.frequency.setValueAtTime(55, now);
+      <a href="https://ko-fi.com/s/11e9f173a0" target="_blank" class="tier">
+        <div class="tier-price">$3</div>
+        <div class="tier-title">Help us move</div>
+        <p>Support the relocation effort.</p>
+      </a>
 
       const rumbleFilter = audioCtx.createBiquadFilter();
       rumbleFilter.type = 'lowpass';
       rumbleFilter.frequency.setValueAtTime(120, now);
+      <a href="https://ko-fi.com/s/cb443e618d" target="_blank" class="tier">
+        <div class="tier-price">$10</div>
+        <div class="tier-title">Keep the memory alive</div>
+        <p>Help ensure it survives.</p>
+      </a>
 
       const rumbleGain = audioCtx.createGain();
       rumbleGain.gain.setValueAtTime(0.001, now);
       rumbleGain.gain.exponentialRampToValueAtTime(0.03, now + 0.02);
       rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+      <a href="https://ko-fi.com/s/9cdb56db1f" target="_blank" class="tier">
+        <div class="tier-price">$25</div>
+        <div class="tier-title">Help rebuild the experience</div>
+        <p>Support reconstruction.</p>
+      </a>
 
       rumble.connect(rumbleFilter);
       rumbleFilter.connect(rumbleGain);
       rumbleGain.connect(master);
+      <a href="https://ko-fi.com/s/c5d4c76407" target="_blank" class="tier">
+        <div class="tier-price">$50</div>
+        <div class="tier-title">Become part of the relocation</div>
+        <p>Be part of its survival.</p>
+      </a>
 
       // Sharp metallic glitch tone
       const tone = audioCtx.createOscillator();
       tone.type = 'square';
       tone.frequency.setValueAtTime(1800, now);
       tone.frequency.exponentialRampToValueAtTime(320, now + 0.08);
+    </div>
 
       const toneGain = audioCtx.createGain();
       toneGain.gain.setValueAtTime(0.001, now);
       toneGain.gain.exponentialRampToValueAtTime(0.018, now + 0.01);
       toneGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+  </div>
+</section>
 
       tone.connect(toneGain);
       toneGain.connect(master);
+<section class="container closing reveal">
 
       noise.start(now);
       noise.stop(now + 0.22);
+  <h2>Some works cannot move easily</h2>
 
       rumble.start(now);
       rumble.stop(now + 0.2);
+  <p>
+    That does not make them less meaningful.
+    It only makes them easier to lose — if they cannot move in time.
+  </p>
 
       tone.start(now);
       tone.stop(now + 0.12);
     }
+  <div class="closing-quote">
+    “After the war, the only trophy left is that every ordinary moment can drag me back into it.”
+  </div>
 
     const supportCards = document.querySelectorAll('.support-card');
     supportCards.forEach(card => {
       let hoverCooldown = false;
+</section>
 
-</main>
       card.addEventListener('mouseenter', () => {
         if (hoverCooldown) return;
         hoverCooldown = true;
+</main>
 
+        card.classList.add('glitching');
+        playGlitchWarSound();
 <footer>
   This page exists to preserve — and now to move — Over My Dead Body.
 </footer>
-        card.classList.add('glitching');
-        playGlitchWarSound();
 
-</div>
         setTimeout(() => {
           card.classList.remove('glitching');
         }, 220);
+</div>
 
         setTimeout(() => {
           hoverCooldown = false;
