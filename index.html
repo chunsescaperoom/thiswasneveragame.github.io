@@ -1373,7 +1373,7 @@ there is no guarantee this experience will still exist by the time it is publish
 
       const master = audioCtx.createGain();
       master.gain.setValueAtTime(0.0001, now);
-      master.gain.exponentialRampToValueAtTime(0.07, now + 0.015);
+      master.gain.exponentialRampToValueAtTime(0.2, now + 0.015);
       master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
       master.connect(audioCtx.destination);
 
