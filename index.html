@@ -1366,102 +1366,111 @@ there is no guarantee this experience will still exist by the time it is publish
     window.addEventListener('touchstart', unlockAudio, { once: true });
     window.addEventListener('keydown', unlockAudio, { once: true });
 
-    function playGlitchWarSound() {
-      if (!audioUnlocked || !audioCtx) return;
+   function playGlitchWarSound(volume = 0.15) {
+  if (!audioUnlocked || !audioCtx) return;
 
-      const now = audioCtx.currentTime;
+  const now = audioCtx.currentTime;
 
-      const master = audioCtx.createGain();
-      master.gain.setValueAtTime(0.0001, now);
-      master.gain.exponentialRampToValueAtTime(0.2, now + 0.015);
-      master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
-      master.connect(audioCtx.destination);
+  const master = audioCtx.createGain();
+  master.gain.setValueAtTime(0.0001, now);
+  master.gain.exponentialRampToValueAtTime(volume, now + 0.015);
+  master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+  master.connect(audioCtx.destination);
 
-      // Noise burst
-      const bufferSize = audioCtx.sampleRate * 0.25;
-      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
-      }
+  // Noise burst
+  const bufferSize = audioCtx.sampleRate * 0.25;
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+  }
 
-      const noise = audioCtx.createBufferSource();
-      noise.buffer = buffer;
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = buffer;
 
-      const bandpass = audioCtx.createBiquadFilter();
-      bandpass.type = 'bandpass';
-      bandpass.frequency.setValueAtTime(900, now);
-      bandpass.Q.setValueAtTime(0.8, now);
+  const bandpass = audioCtx.createBiquadFilter();
+  bandpass.type = 'bandpass';
+  bandpass.frequency.setValueAtTime(900, now);
+  bandpass.Q.setValueAtTime(0.8, now);
 
-      const noiseGain = audioCtx.createGain();
-      noiseGain.gain.setValueAtTime(0.55, now);
+  const noiseGain = audioCtx.createGain();
+  noiseGain.gain.setValueAtTime(0.7, now);
 
-      noise.connect(bandpass);
-      bandpass.connect(noiseGain);
-      noiseGain.connect(master);
+  noise.connect(bandpass);
+  bandpass.connect(noiseGain);
+  noiseGain.connect(master);
 
-      // Low rumble
-      const rumble = audioCtx.createOscillator();
-      rumble.type = 'sawtooth';
-      rumble.frequency.setValueAtTime(55, now);
+  // Low rumble
+  const rumble = audioCtx.createOscillator();
+  rumble.type = 'sawtooth';
+  rumble.frequency.setValueAtTime(55, now);
 
-      const rumbleFilter = audioCtx.createBiquadFilter();
-      rumbleFilter.type = 'lowpass';
-      rumbleFilter.frequency.setValueAtTime(120, now);
+  const rumbleFilter = audioCtx.createBiquadFilter();
+  rumbleFilter.type = 'lowpass';
+  rumbleFilter.frequency.setValueAtTime(120, now);
 
-      const rumbleGain = audioCtx.createGain();
-      rumbleGain.gain.setValueAtTime(0.001, now);
-      rumbleGain.gain.exponentialRampToValueAtTime(0.03, now + 0.02);
-      rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+  const rumbleGain = audioCtx.createGain();
+  rumbleGain.gain.setValueAtTime(0.001, now);
+  rumbleGain.gain.exponentialRampToValueAtTime(0.04, now + 0.02);
+  rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
 
-      rumble.connect(rumbleFilter);
-      rumbleFilter.connect(rumbleGain);
-      rumbleGain.connect(master);
+  rumble.connect(rumbleFilter);
+  rumbleFilter.connect(rumbleGain);
+  rumbleGain.connect(master);
 
-      // Sharp metallic glitch tone
-      const tone = audioCtx.createOscillator();
-      tone.type = 'square';
-      tone.frequency.setValueAtTime(1800, now);
-      tone.frequency.exponentialRampToValueAtTime(320, now + 0.08);
+  // Sharp metallic glitch tone
+  const tone = audioCtx.createOscillator();
+  tone.type = 'square';
+  tone.frequency.setValueAtTime(1800, now);
+  tone.frequency.exponentialRampToValueAtTime(320, now + 0.08);
 
-      const toneGain = audioCtx.createGain();
-      toneGain.gain.setValueAtTime(0.001, now);
-      toneGain.gain.exponentialRampToValueAtTime(0.018, now + 0.01);
-      toneGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+  const toneGain = audioCtx.createGain();
+  toneGain.gain.setValueAtTime(0.001, now);
+  toneGain.gain.exponentialRampToValueAtTime(0.02, now + 0.01);
+  toneGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
 
-      tone.connect(toneGain);
-      toneGain.connect(master);
+  tone.connect(toneGain);
+  toneGain.connect(master);
 
-      noise.start(now);
-      noise.stop(now + 0.22);
+  noise.start(now);
+  noise.stop(now + 0.22);
 
-      rumble.start(now);
-      rumble.stop(now + 0.2);
+  rumble.start(now);
+  rumble.stop(now + 0.2);
 
-      tone.start(now);
-      tone.stop(now + 0.12);
-    }
+  tone.start(now);
+  tone.stop(now + 0.12);
+}
 
-    const supportCards = document.querySelectorAll('.support-card');
-    supportCards.forEach(card => {
-      let hoverCooldown = false;
 
-      card.addEventListener('mouseenter', () => {
-        if (hoverCooldown) return;
-        hoverCooldown = true;
+// 🔥 分開 hover / click
+const supportCards = document.querySelectorAll('.support-card');
 
-        card.classList.add('glitching');
-        playGlitchWarSound();
+supportCards.forEach(card => {
+  let hoverCooldown = false;
 
-        setTimeout(() => {
-          card.classList.remove('glitching');
-        }, 220);
+  // 桌機 hover（小聲）
+  card.addEventListener('mouseenter', () => {
+    if (hoverCooldown) return;
+    hoverCooldown = true;
 
-        setTimeout(() => {
-          hoverCooldown = false;
-        }, 320);
-      });
-    });
+    card.classList.add('glitching');
+    playGlitchWarSound(0.12);
+
+    setTimeout(() => {
+      card.classList.remove('glitching');
+    }, 220);
+
+    setTimeout(() => {
+      hoverCooldown = false;
+    }, 320);
+  });
+
+  // 手機 / 點擊（大聲）
+  card.addEventListener('click', () => {
+    playGlitchWarSound(0.28);
+  });
+});
   </script>
 </body>
 </html>
