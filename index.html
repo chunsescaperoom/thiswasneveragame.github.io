@@ -483,6 +483,140 @@
       text-align: center;
     }
 
+
+
+    .article-review-wrap {
+      margin-top: 28px;
+      max-width: 760px;
+    }
+
+    .article-review-intro {
+      margin-bottom: 18px;
+    }
+
+    .article-review-intro-line {
+      height: 1px;
+      width: 40px;
+      background: rgba(255,255,255,0.12);
+      margin-bottom: 14px;
+    }
+
+    .article-review-intro h3 {
+      margin-bottom: 10px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .article-review-intro p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 720px;
+    }
+
+    .article-card {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 0;
+      margin-top: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(209,24,24,0.45);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .article-thumb {
+      min-height: 250px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(135deg, rgba(209,24,24,0.32), rgba(0,0,0,0.5)),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 30%),
+        linear-gradient(180deg, #171717, #060606);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.035) 0,
+          rgba(255,255,255,0.035) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    .article-thumb-tag,
+    .article-thumb-title {
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-thumb-tag {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .article-thumb-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.35rem, 3vw, 2.15rem);
+      line-height: 1.08;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(209,24,24,0.22);
+    }
+
+    .article-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .article-source {
+      color: var(--dim);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .article-card-title {
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .article-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .article-card .btn {
+      align-self: flex-start;
+    }
+
     .featured-proof {
       margin-top: 18px;
       display: grid;
@@ -784,7 +918,8 @@
       .story-columns,
       .support-grid,
       .reviews-grid,
-      .featured-proof {
+      .featured-proof,
+      .article-card {
         grid-template-columns: 1fr;
       }
 
@@ -816,6 +951,10 @@
       .button-row,
       .gate-actions {
         flex-direction: column;
+      }
+
+      .article-thumb {
+        min-height: 210px;
       }
 
       .closing-quote {
@@ -964,32 +1103,36 @@
             </div>
           </div>
         </div>
-        <div style="margin-top: 28px; max-width: 720px;">
+        <div class="article-review-wrap">
+          <div class="article-review-intro">
+            <div class="article-review-intro-line"></div>
+            <h3>Read an independent review</h3>
+            <p>
+              If you'd like to learn more about <strong>Over My Dead Body</strong>, you can also read an independent review published by
+              <strong>Room Escape Artist</strong>, an online publication dedicated to escape rooms around the world.
+            </p>
+          </div>
 
-  <div style="height:1px; width:40px; background:rgba(255,255,255,0.12); margin-bottom:14px;"></div>
+          <div class="article-card">
+            <div class="article-thumb" aria-label="Room Escape Artist article preview">
+              <div class="article-thumb-tag">Room Escape Artist</div>
+              <div class="article-thumb-title">Independent<br>Review</div>
+            </div>
 
-  <h3 style="margin-bottom: 8px; font-size: 13px; letter-spacing: 0.14em; color: var(--dim); text-transform: uppercase;">
-    Independent coverage now available
-  </h3>
-
-  <p style="color: var(--muted); margin-bottom: 10px;">
-    This experience was visited by contributors from
-    <strong>Room Escape Artist</strong>, who chose to experience it during their time in Taiwan.
-  </p>
-
-  <p style="color: var(--muted); margin-bottom: 10px;">
-    Their article has now been published, offering an independent look at the work and the serious themes behind it.
-  </p>
-
-  <p style="color: var(--dim); font-size: 0.95rem; margin-bottom: 16px;">
-    This page was originally created before the coverage was released. Now, that coverage has become part of the record.
-  </p>
-
-  <a class="btn btn-secondary" href="https://roomescapeartist.com/2026/07/06/over-my-dead-body-exploring-serious-topics-in-taiwan-through-escape-room-play/" target="_blank" rel="noopener noreferrer">
-    Read the Room Escape Artist article
-  </a>
-
-</div>
+            <div class="article-card-body">
+              <div class="article-source">Room Escape Artist</div>
+              <div class="article-card-title">
+                Over My Dead Body: Exploring Serious Topics in Taiwan Through Escape Room Play
+              </div>
+              <div class="article-meta">
+                Published by Room Escape Artist · July 2026
+              </div>
+              <a class="btn btn-secondary" href="https://roomescapeartist.com/2026/07/06/over-my-dead-body-exploring-serious-topics-in-taiwan-through-escape-room-play/" target="_blank" rel="noopener noreferrer">
+                Read the full review
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="container reveal">
